@@ -208,7 +208,7 @@ class FormBuilderFormHelper extends AFormhelper {
               ServerForm? serverForm = await WebServerApi.getForm(id);
               if (serverForm != null) {
                 _serverForm = serverForm;
-                var sectionMap = jsonDecode(serverForm.definition);
+                var sectionMap = jsonDecode(utf8.decode(serverForm.definition);
                 section = SmashSection(sectionMap);
                 section!.setSectionName(serverForm.name);
                 if (postAction != null) postAction();

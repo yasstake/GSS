@@ -103,7 +103,7 @@ class WebServerApi {
 
     var response = await get(uri, headers: requestHeaders);
     if (response.statusCode == 200) {
-      Map<String, dynamic> imageMap = jsonDecode(response.body);
+      Map<String, dynamic> imageMap = jsonDecode(utf8.decode(response.body);
       var dataString = imageMap[THUMBNAIL];
       var imgData = Base64Decoder().convert(dataString);
       return imgData;
@@ -120,7 +120,7 @@ class WebServerApi {
 
     var response = await get(uri, headers: requestHeaders);
     if (response.statusCode == 200) {
-      List<dynamic> imagesList = jsonDecode(response.body);
+      List<dynamic> imagesList = jsonDecode(utf8.decode(response.body);
       return imagesList;
     } else {
       return null;
@@ -133,7 +133,7 @@ class WebServerApi {
     var uri = Uri.parse(API_RENDERNOTES + "?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var notesList = jsonDecode(response.body);
+      var notesList = jsonDecode(utf8.decode(response.body);
       return notesList;
     } else {
       return null;
@@ -147,7 +147,7 @@ class WebServerApi {
         Uri.parse(API_LASTUSERPOSITIONS + "?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var positionsList = jsonDecode(response.body);
+      var positionsList = jsonDecode(utf8.decode(response.body);
       return positionsList;
     } else {
       return null;
@@ -160,7 +160,7 @@ class WebServerApi {
     var uri = Uri.parse(API_GPSLOGS + "?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var notesList = jsonDecode(response.body);
+      var notesList = jsonDecode(utf8.decode(response.body);
       return notesList;
     } else {
       return null;
@@ -184,7 +184,7 @@ class WebServerApi {
     var uri = Uri.parse(API_USERS + "$userId/");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var userMap = jsonDecode(response.body);
+      var userMap = jsonDecode(utf8.decode(response.body);
       return userMap['username'];
     } else {
       return null;
@@ -195,7 +195,7 @@ class WebServerApi {
     try {
       var response = await get(Uri.parse(API_PROJECTNAMES));
       if (response.statusCode == 200) {
-        var list = jsonDecode(response.body);
+        var list = jsonDecode(utf8.decode(response.body);
         List<WebProject> projectsList = List<WebProject>.from(
             list.map((projectMap) => WebProject.fromMap(projectMap)));
         return projectsList;
@@ -215,7 +215,7 @@ class WebServerApi {
     var uri = Uri.parse("$API_FORMNAMES?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var formsList = jsonDecode(response.body);
+      var formsList = jsonDecode(utf8.decode(response.body);
       // get names from list of maps
       var id2namesMap = <int, String>{};
       for (var formMap in formsList) {
@@ -233,7 +233,7 @@ class WebServerApi {
     var uri = Uri.parse("$API_FORMS$id?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      dynamic formMap = jsonDecode(response.body);
+      dynamic formMap = jsonDecode(utf8.decode(response.body);
       if (formMap is List && formMap.isNotEmpty) {
         formMap = formMap[0];
       }
@@ -275,7 +275,7 @@ class WebServerApi {
     var response =
         await post(uri, headers: tokenHeader, body: jsonEncode(formMap));
     if (response.statusCode == 201) {
-      var responseMap = jsonDecode(response.body);
+      var responseMap = jsonDecode(utf8.decode(response.body);
       var newFormId = responseMap['id'];
       form.id = newFormId;
       return null;
@@ -291,7 +291,7 @@ class WebServerApi {
     var uri = Uri.parse(API_USERCONFIGS + "?$API_PROJECT_PARAM${project.id}");
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      var dataList = jsonDecode(response.body);
+      var dataList = jsonDecode(utf8.decode(response.body);
       for (var item in dataList) {
         var key = item['key'];
         var value = item['value'];
@@ -344,7 +344,7 @@ class WebServerApi {
       var uri = Uri.parse(API_WMSSOURCES + "?$API_PROJECT_PARAM${project.id}");
       var response = await get(uri, headers: tokenHeader);
       if (response.statusCode == 200) {
-        var list = jsonDecode(response.body);
+        var list = jsonDecode(utf8.decode(response.body);
         for (var item in list) {
           var epsg = item['epsg'];
           var crs = epsg == 4326 ? Epsg4326() : Epsg3857();
@@ -380,7 +380,7 @@ class WebServerApi {
       uri = Uri.parse(API_TMSSOURCES + "?$API_PROJECT_PARAM${project.id}");
       response = await get(uri, headers: tokenHeader);
       if (response.statusCode == 200) {
-        var list = jsonDecode(response.body);
+        var list = jsonDecode(utf8.decode(response.body);
         for (var item in list) {
           layers[item['label']] = Opacity(
             opacity: item['opacity'],
@@ -448,7 +448,7 @@ class WebProject {
   }
 
   static WebProject fromJson(String projectJson) {
-    var projectMap = jsonDecode(projectJson);
+    var projectMap = jsonDecode(utf8.decode(projectJson);
     return fromMap(projectMap);
   }
 

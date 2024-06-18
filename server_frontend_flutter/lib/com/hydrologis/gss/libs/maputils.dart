@@ -220,7 +220,7 @@ openNoteDialog(BuildContext context, int noteId) async {
     widget =
         SmashDialogs.showErrorDialog(context, "No note with id $noteId found.");
   } else {
-    Map<String, dynamic> noteItem = jsonDecode(data!);
+    Map<String, dynamic> noteItem = jsonDecode(utf8.decode(data!);
     var user = noteItem[USER];
     var userName = await WebServerApi.getUserName(user);
     noteItem[USER] = userName;
@@ -413,7 +413,7 @@ class _VersionedNoteWidgetState extends State<VersionedNoteWidget> {
 
   Future loadNote() async {
     var data = await WebServerApi.getNote(_current);
-    noteItem = jsonDecode(data!);
+    noteItem = jsonDecode(utf8.decode(data!);
     var userName = await WebServerApi.getUserName(noteItem[USER]);
     noteItem[USER] = userName;
     _current = noteItem[ID];
@@ -546,7 +546,7 @@ class _FilterWidgetState extends State<FilterWidget>
     // String responsJson =
     //     await WebServerApi.getProjects(sessionUser[0], sessionUser[1]);
 
-    // var jsonMap = jsonDecode(responsJson);
+    // var jsonMap = jsonDecode(utf8.decode(responsJson);
 
     // List<dynamic> projects = jsonMap[KEY_PROJECTS];
     // List<String> filterProjects = _filterStateModel.projects;
@@ -562,7 +562,7 @@ class _FilterWidgetState extends State<FilterWidget>
     // responsJson =
     //     await WebServerApi.getSurveyorsJson(sessionUser[0], sessionUser[1]);
 
-    // jsonMap = jsonDecode(responsJson);
+    // jsonMap = jsonDecode(utf8.decode(responsJson);
 
     // List<dynamic> surveyors = jsonMap[KEY_SURVEYORS];
     // List<String> filterSurveyors = _filterStateModel.surveyors;

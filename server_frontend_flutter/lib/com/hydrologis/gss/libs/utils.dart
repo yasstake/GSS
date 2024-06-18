@@ -52,7 +52,7 @@ class _NetworkImageWidgetState extends State<NetworkImageWidget> {
 
     var response = await get(uri, headers: tokenHeader);
     if (response.statusCode == 200) {
-      Map<String, dynamic> imageMap = jsonDecode(response.body);
+      Map<String, dynamic> imageMap = jsonDecode(utf8.decode(response.body);
       var dataString = imageMap[IMAGEDATA][DATA];
       _bytes = Base64Decoder().convert(dataString);
       _imageReady = true;

@@ -38,7 +38,7 @@ class SmashSession {
       return null;
     } else {
       var errorMap =
-          jsonDecode(responseText.replaceFirst(NETWORKERROR_PREFIX, ""));
+          jsonDecode(utf8.decode(responseText.replaceFirst(NETWORKERROR_PREFIX, ""));
       var errorText = errorMap['error'] ?? responseText;
       return errorText;
     }
